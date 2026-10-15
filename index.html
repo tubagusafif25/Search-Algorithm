@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="Ruang belajar offline untuk enam topik kuis KKA: DFS, UCS, Greedy, A*, Hill Climbing, dan Alpha-Beta.">
+  <title>KKA Kuis</title>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="widgets.css?v=3">
+  <script defer src="algorithms.js?v=3"></script>
+  <script defer src="cases.js?v=3"></script>
+  <script defer src="widgets-core.js?v=3"></script>
+  <script defer src="widgets-drill.js?v=3"></script>
+  <script defer src="content/cheatsheet.js?v=3"></script>
+  <script defer src="content/t1.js?v=3"></script>
+  <script defer src="content/t2.js?v=3"></script>
+  <script defer src="content/t3.js?v=3"></script>
+  <script defer src="content/t4.js?v=3"></script>
+  <script defer src="content/t5.js?v=3"></script>
+  <script defer src="content/t6.js?v=3"></script>
+  <script defer src="app.js?v=3"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke materi</a>
+  <header class="topbar">
+    <a class="brand" id="home" href="#/" aria-label="KKA Kuis, beranda"><span class="brand-mark" aria-hidden="true">K</span><span class="brand-text">KKA <span class="brand-light">Kuis</span></span></a>
+    <div class="header-actions">
+      <a class="button ghost" id="resume" href="#/" hidden><span class="lbl-long">Lanjutkan</span><span class="lbl-short" aria-hidden="true">Lanjut</span></a>
+      <button id="export-answers" class="button secondary" type="button" aria-label="Ekspor jawaban (.txt)">Ekspor</button>
+      <button id="nav-toggle" class="button ghost nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false">Topik</button>
+    </div>
+  </header>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar" aria-label="Navigasi topik">
+      <nav id="topic-nav" aria-label="Daftar topik"></nav>
+      <p class="sidebar-note"><span class="note-dot" aria-hidden="true"></span><span id="save-status" role="status" aria-live="polite">Siap belajar</span></p>
+    </aside>
+    <main id="main" tabindex="-1"><noscript>Aktifkan JavaScript untuk memakai KKA Kuis.</noscript></main>
+  </div>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="slide-dialog" aria-labelledby="slide-dialog-caption">
+    <figure>
+      <img id="slide-dialog-img" alt="">
+      <figcaption id="slide-dialog-caption"></figcaption>
+    </figure>
+    <form method="dialog"><button class="button secondary" type="submit" id="slide-dialog-close">Tutup</button></form>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* Widgets (W2). Uses only the shared variables defined in styles.css; no fixed widths, so every widget fits a 375px phone. */
+.widget{margin:20px 0;padding:18px;border:1px solid var(--line,#e5e5e8);border-radius:14px;background:var(--surface,#fff);min-width:0;max-width:100%;box-sizing:border-box}
+.widget-title{font-weight:650;font-size:16px;margin-bottom:10px;overflow-wrap:anywhere}
+.widget-host{min-width:0;max-width:100%}
+.widget p{overflow-wrap:anywhere}
+.widget .control-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.widget .control-row label{display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.widget select{min-height:44px;max-width:100%}
+.widget .button{min-height:44px}
+.widget .mono,.mono{font-family:var(--mono,ui-monospace,Menlo,monospace);font-size:14px;overflow-wrap:anywhere}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.badge.correct{background:var(--green-soft,#eaf7ef);color:var(--green,#16834a)}
+.badge.incorrect{background:var(--amber-soft,#fff5df);color:var(--amber,#9a6200)}
+.feedback.correct{color:var(--ink,#1d1d1f)}
+.feedback.incorrect{color:var(--ink,#1d1d1f)}
+.legend-note{font-size:13px}
+.alt-text{margin-top:10px;font-size:14px}
+.alt-text summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+.step-count{font-size:14px}
+.scroll-x{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+.result-list{display:grid;grid-template-columns:minmax(110px,max-content) minmax(0,1fr);gap:6px 14px;margin:8px 0}
+.result-list dt{font-weight:650}
+.result-list dd{margin:0;overflow-wrap:anywhere}
+
+/* Graph diagrams: viewBox scaling, no fixed width. */
+.graph-wrap{width:100%;min-width:0;max-width:100%;container-type:inline-size}
+.graph-wrap svg.kka-graph{display:block;width:100%;height:auto;max-height:520px}
+.graph-wrap.many-nodes{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm,8px)}
+.graph-wrap .scroll-hint{display:none;margin:0 0 4px;font-size:13px;font-weight:600;color:var(--blue,#0071e3)}
+/* Narrow containers (phone): keep the whole map at a readable size and let it scroll inside its own box. */
+@container (max-width:479px){
+  .graph-wrap.many-nodes .scroll-hint{display:block;position:sticky;left:0}
+  .graph-wrap.many-nodes svg.kka-graph{width:600px;max-width:none;min-width:600px}
+  .graph-wrap .node-label{display:none}
+}
+.kka-graph .node circle{fill:var(--surface,#fff);stroke:var(--blue,#0071e3);stroke-width:2}
+.kka-graph .node-id{font-size:18px;font-weight:650;text-anchor:middle;fill:var(--ink,#1d1d1f)}
+.kka-graph .node-detail{font-size:13px;font-weight:550;text-anchor:middle;fill:var(--muted,#6e6e73)}
+.kka-graph .node-label{font-size:12px;text-anchor:middle;fill:var(--muted,#6e6e73)}
+.kka-graph .board-bg{fill:#fbfbfd;stroke:var(--line,#e5e5e8);stroke-width:1.5}
+.kka-graph .board-mark{font-size:14px;font-weight:700}
+.kka-graph .board-mark.x{fill:var(--blue,#0071e3)}
+.kka-graph .board-mark.o{fill:var(--green,#16834a)}
+.kka-graph .edge path{fill:none;stroke:#aaaab0;stroke-width:2}
+.kka-graph .edge-label{font-size:15px;font-weight:550;fill:var(--ink,#1d1d1f)}
+.kka-graph .arrowhead{fill:#888}
+.kka-graph .node.frontier circle{fill:var(--amber-soft,#fff5df);stroke:var(--amber,#9a6200)}
+.kka-graph .node.expanded circle{fill:var(--green-soft,#eaf7ef);stroke:var(--green,#16834a)}
+.kka-graph .node.current circle{fill:#dceeff;stroke:var(--blue,#0071e3);stroke-width:3}
+.kka-graph .node.path:not(.current):not(.pruned) circle{fill:var(--green-soft,#eaf7ef);stroke:var(--green,#16834a);stroke-width:4}
+.kka-graph .node.pruned circle{fill:#f0f0f2;stroke:#9a9aa0;stroke-dasharray:4 3;opacity:.7}
+.kka-graph .edge.path path{stroke:var(--green,#16834a);stroke-width:4}
+.kka-graph .edge.pruned path{stroke:#9a9aa0;stroke-dasharray:5 4;opacity:.65}
+.kka-graph .edge.path .arrowhead,.kka-graph .edge.path{stroke:var(--green,#16834a)}
+
+/* Simulator layout and lists. */
+.simulator-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr);gap:16px;align-items:start}
+.simulator-grid>*{min-width:0;max-width:100%}
+/* Maps with many cities get the wider column on desktop so they draw without scrolling. */
+.simulator-grid:has(.graph-wrap.many-nodes){grid-template-columns:minmax(0,2fr) minmax(200px,1fr)}
+@media (max-width:850px){.simulator-grid,.simulator-grid:has(.graph-wrap.many-nodes){grid-template-columns:1fr}}
+.tree-nested ul{padding-left:18px}
+.call-stack{padding-left:20px;margin:6px 0}
+.call-stack li{font-weight:600}
+.slider-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:10px 0}
+.slider-row input[type=range]{flex:1 1 180px;min-width:0;accent-color:var(--blue,#0071e3);min-height:44px}
+
+/* Trace tables: skipped pops are a full-width note row. */
+.trace-table td,.trace-table th{font-variant-numeric:tabular-nums}
+.trace-table .skip-row td{font-size:13px;color:var(--muted,#6e6e73);background:var(--surface-2,#f5f5f7);font-style:italic;white-space:normal}
+.trace-table td:nth-child(7){min-width:220px}
+
+/* Drill forms: one column on a phone, two or three on wider screens. Results are text as well as colour. */
+.drill-form{margin:12px 0}
+.drill-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin:10px 0}
+@media (min-width:600px){.drill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.drill-field{display:flex;flex-direction:column;gap:6px;min-width:0;padding:10px 12px;border:1px solid var(--line,#e5e5e8);border-radius:12px;background:var(--surface,#fff)}
+.drill-field.is-ok{border-color:var(--green,#16834a);background:var(--green-soft,#eaf7ef)}
+.drill-field.is-bad{border-color:var(--amber,#9a6200);background:var(--amber-soft,#fff5df)}
+.drill-field label{font-weight:650}
+.drill-field input,.drill-field select{width:100%;min-height:44px;box-sizing:border-box;font-family:var(--mono,ui-monospace,Menlo,monospace)}
+.drill-field .field-help{margin:0;font-size:13px}
+.drill-field .field-msg{margin:0;font-weight:600;font-size:14px}
+.field-msg.correct{color:var(--green,#16834a)}
+.field-msg.incorrect{color:var(--ink,#1d1d1f)}
+.drill-prev{margin:4px 0 8px;font-size:15px}
+/* Trace row: Dipilih + Aksi share a row when the width allows; g/h/f sit in one compact row at every width. */
+.drill-grid.trace-grid{grid-template-columns:minmax(0,1fr);gap:10px}
+.drill-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;min-width:0}
+.drill-nums{display:flex;flex-wrap:nowrap;gap:8px;min-width:0}
+.drill-nums>.drill-field{flex:1 1 0;min-width:0;max-width:150px;padding:8px 8px}
+.drill-nums>.drill-field input{text-align:center;padding-left:6px;padding-right:6px}
+.drill-nums>.drill-field .field-msg{font-size:13px;overflow-wrap:anywhere}
+.drill-nums-help{margin:-4px 0 0;font-size:13px}
+.drill-check{display:flex;align-items:center;gap:8px;min-height:44px;margin-top:6px}
+.drill-hint{margin:10px 0;padding:10px 12px;border-left:4px solid var(--blue,#0071e3);background:var(--blue-soft,#eef5ff);border-radius:8px;font-size:15px}
+.drill-progress{font-weight:650;margin:8px 0 4px}
+.drill-score{margin:4px 0 10px}
+.drill-done{font-size:16px;color:var(--green,#16834a)}
+.drill-feedback p{margin:4px 0}
+
+/* Tsp tables and cost inputs. */
+.tsp-table th[scope=row]{white-space:nowrap}
+.tsp-table tr.is-best td,.tsp-table tr.is-best th{font-weight:650}
+.tsp-table .cost-input{width:100%;min-width:96px;min-height:44px;box-sizing:border-box;font-family:var(--mono,ui-monospace,Menlo,monospace)}
+.tsp-table .cost-msg td{font-size:13px;padding-top:0}
+
+/* Variant lab and minimax leaf editors. */
+.custom-variant{margin-top:12px}
+.custom-variant>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:650}
+.custom-form{margin-top:8px}
+.h-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:8px 0}
+.h-field{display:flex;flex-direction:column;gap:4px;font-size:14px;min-width:0}
+.h-field input{min-height:44px;width:100%;box-sizing:border-box}
+
+/* Queens board. */
+.queen-board{display:grid;grid-template-columns:1fr;width:min(100%,360px);border:2px solid var(--ink,#1d1d1f);margin:10px 0}
+.queen-row{display:grid;grid-template-columns:repeat(8,1fr)}
+.queen-cell{aspect-ratio:1;min-width:0;min-height:36px;border:1px solid var(--line,#e5e5e8);background:#fff;font:inherit;font-size:15px;padding:0;cursor:pointer;color:var(--ink,#1d1d1f)}
+.queen-cell.dark{background:#f2f2f5}
+.queen-cell.queen{font-size:20px;color:var(--blue,#0071e3);cursor:default}
+.queen-cell:disabled{cursor:default}
+.queen-cell:not(:disabled):hover{outline:2px solid var(--blue,#0071e3);outline-offset:-2px}
+.queen-h{font-size:12px;color:var(--muted,#6e6e73)}
+
+@media (prefers-reduced-motion: reduce){
+  .widget *{transition:none!important;animation:none!important}
+}
+
+/* Print: drills show the table and the key only, without buttons or inputs. */
+@media print{
+  .widget{border:0;padding:0;margin:8px 0;box-shadow:none}
+  .widget .button,.widget .control-row,.drill-form,.drill-hint,.alt-text summary,.scroll-hint{display:none!important}
+  .widget details[open] > *{display:block}
+  .trace-table,.data-table{font-size:11px}
+  .kka-graph{max-height:none}
+}
